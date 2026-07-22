@@ -1,0 +1,12 @@
+/raw_data/
+/output/
+/Pre_desenvolvimento/
+/.vscode/
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+*.joblib

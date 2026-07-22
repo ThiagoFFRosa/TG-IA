@@ -1,0 +1,9 @@
+              precision    recall  f1-score   support
+
+  baixo_peso     0.4689    0.6408    0.5416     28038
+    adequado     0.9190    0.8309    0.8727    273603
+ macrossomia     0.1163    0.2454    0.1578     14359
+
+    accuracy                         0.7875    316000
+   macro avg     0.5014    0.5724    0.5240    316000
+weighted avg     0.8426    0.7875    0.8109    316000

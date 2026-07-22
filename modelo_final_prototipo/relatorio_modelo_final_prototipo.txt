@@ -1,0 +1,110 @@
+RELATÓRIO DO MODELO FINAL PARA O PROTÓTIPO
+================================================================================
+
+Objetivo:
+Treinar e salvar o modelo final que será utilizado pelo protótipo web de apoio à decisão para classificação da categoria de peso ao nascer.
+
+Arquitetura planejada do protótipo:
+- Frontend: HTML, CSS e JavaScript.
+- Backend: Python para carregamento do modelo .joblib e execução da IA.
+- Exposição temporária: ngrok.
+
+Variável-alvo:
+- CLASSE_PESO
+Classes: baixo_peso, adequado, macrossomia
+
+Observação metodológica:
+O campo PESO não é utilizado como entrada do modelo, pois ele define diretamente a variável-alvo CLASSE_PESO. Sua utilização causaria vazamento de dados.
+
+Tratamento de dados ausentes no protótipo:
+O pipeline final possui tratamento para dados não informados. Variáveis numéricas utilizam imputação pela mediana do conjunto de treino, enquanto variáveis categóricas recebem a categoria NAO_INFORMADO e são codificadas por OneHotEncoder com handle_unknown='ignore'.
+
+Parâmetros do Random Forest:
+{
+  "n_estimators": 92,
+  "max_depth": 30,
+  "min_samples_split": 9,
+  "min_samples_leaf": 10,
+  "max_features": 0.5,
+  "criterion": "log_loss",
+  "bootstrap": true,
+  "max_samples": 0.6,
+  "class_weight": "balanced",
+  "random_state": 42,
+  "n_jobs": -1
+}
+
+Configuração de semi-balanceamento:
+mult_adequado: 14.11
+mult_baixo: 1.0
+Distribuição final de treino: {'adequado': 810421, 'baixo_peso': 57436, 'macrossomia': 57436}
+
+Features utilizadas:
+- LOCNASC
+- IDADEMAE
+- ESTCIVMAE
+- ESCMAE
+- ESCMAE2010
+- ESCMAEAGR1
+- RACACORMAE
+- QTDFILVIVO
+- QTDFILMORT
+- QTDGESTANT
+- QTDPARTNOR
+- QTDPARTCES
+- GESTACAO
+- SEMAGESTAC
+- GRAVIDEZ
+- PARTO
+- CONSULTAS
+- CONSPRENAT
+- MESPRENAT
+- TPAPRESENT
+- STTRABPART
+- STCESPARTO
+- TPNASCASSI
+- PARIDADE
+- KOTELCHUCK
+- SEXO
+- RACACOR
+- APGAR1
+- APGAR5
+- IDANOMAL
+
+Tempo de treino:
+84.26 segundos
+
+Métricas no teste final:
+Acurácia: 78.75%
+Balanced accuracy: 57.24%
+Precisão macro: 50.14%
+Recall macro: 57.24%
+F1 macro: 52.4%
+F1 weighted: 81.09%
+
+F1-score por classe:
+Baixo peso: 54.16%
+Adequado: 87.27%
+Macrossomia: 15.78%
+
+Recall por classe:
+Baixo peso: 64.08%
+Adequado: 83.09%
+Macrossomia: 24.54%
+
+Matriz de confusão:
+                  pred_baixo_peso  pred_adequado  pred_macrossomia
+real_baixo_peso             17968           9616               454
+real_adequado               19948         227347             26308
+real_macrossomia              403          10433              3523
+
+Classification report:
+              precision    recall  f1-score   support
+
+  baixo_peso     0.4689    0.6408    0.5416     28038
+    adequado     0.9190    0.8309    0.8727    273603
+ macrossomia     0.1163    0.2454    0.1578     14359
+
+    accuracy                         0.7875    316000
+   macro avg     0.5014    0.5724    0.5240    316000
+weighted avg     0.8426    0.7875    0.8109    316000
