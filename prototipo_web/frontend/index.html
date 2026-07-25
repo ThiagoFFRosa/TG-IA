@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protótipo TG IA - Peso ao nascer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">Protótipo acadêmico • SINASC • IA</p>
+      <h1>Classificação da categoria de peso ao nascer</h1>
+      <p class="hero__text">
+        Interface inicial para coletar variáveis do modelo e consultar a predição de
+        <strong>baixo_peso</strong>, <strong>adequado</strong> ou <strong>macrossomia</strong>.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="notice" aria-live="polite">
+      <strong>Status:</strong>
+      <span id="status-message">Carregando dicionário de campos e lista de features...</span>
+    </section>
+
+    <form id="prediction-form" class="form-card">
+      <div class="form-card__header">
+        <div>
+          <h2>Dados para classificação</h2>
+          <p>Preencha os campos conhecidos. Valores vazios serão enviados como <code>null</code>.</p>
+        </div>
+        <button class="secondary-button" type="button" id="fill-example">Preencher exemplo</button>
+      </div>
+
+      <div id="form-groups" class="groups" aria-live="polite"></div>
+
+      <div class="actions">
+        <button type="submit" class="primary-button">Enviar para predição</button>
+        <button type="button" class="secondary-button" id="clear-form">Limpar formulário</button>
+      </div>
+    </form>
+
+    <section id="result-card" class="result-card hidden" aria-live="polite">
+      <div class="result-card__header">
+        <p class="eyebrow" id="result-mode">Resultado</p>
+        <h2 id="predicted-class">Classe prevista</h2>
+      </div>
+      <div id="probabilities" class="probabilities"></div>
+      <p id="interpretation" class="interpretation"></p>
+      <p class="academic-warning">
+        Este sistema é um protótipo acadêmico e não substitui avaliação profissional, clínica ou epidemiológica.
+      </p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
