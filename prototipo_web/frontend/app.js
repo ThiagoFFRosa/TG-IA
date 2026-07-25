@@ -1,5 +1,6 @@
 const FEATURES_URL = '../../modelo_final_prototipo/features_modelo_final.json';
 const DICTIONARY_URL = '../../modelo_final_prototipo/dicionario_campos.json';
+const OPTIONS_URL = '../../modelo_final_prototipo/opcoes_campos.json';
 const TARGET_CLASSES = ['baixo_peso', 'adequado', 'macrossomia'];
 
 const fallbackFeatures = [
@@ -45,6 +46,7 @@ const fallbackDictionary = {
 
 let modelFeatures = [];
 let fieldDictionary = {};
+let fieldOptions = {};
 
 const form = document.querySelector('#prediction-form');
 const groupsContainer = document.querySelector('#form-groups');
@@ -60,12 +62,26 @@ async function loadJson(url) {
 async function initialize() {
   try {
     [modelFeatures, fieldDictionary] = await Promise.all([loadJson(FEATURES_URL), loadJson(DICTIONARY_URL)]);
-    statusMessage.textContent = 'Arquivos do modelo carregados dinamicamente com sucesso.';
   } catch (error) {
     modelFeatures = fallbackFeatures;
     fieldDictionary = fallbackDictionary;
     notice.classList.add('warning');
-    statusMessage.textContent = 'Não foi possível carregar os JSONs via fetch. Usando metadados embutidos para permitir teste local; ao servir por HTTP, os arquivos externos serão utilizados.';
+    statusMessage.textContent = 'Não foi possível carregar a lista de features ou o dicionário via fetch. Usando metadados embutidos para permitir teste local; ao servir por HTTP, os arquivos externos serão utilizados.';
+  }
+
+  try {
+    fieldOptions = await loadJson(OPTIONS_URL);
+    if (!notice.classList.contains('warning')) {
+      statusMessage.textContent = 'Arquivos do modelo e opções dos campos carregados dinamicamente com sucesso.';
+    }
+  } catch (error) {
+    fieldOptions = {};
+    const coreFilesUnavailable = notice.classList.contains('warning');
+    notice.classList.add('warning');
+    const optionsFallbackMessage = 'As opções amigáveis não puderam ser carregadas; os campos categóricos permanecerão disponíveis para informar o código SINASC.';
+    statusMessage.textContent = coreFilesUnavailable
+      ? `${statusMessage.textContent} ${optionsFallbackMessage}`
+      : optionsFallbackMessage;
   }
   renderForm();
 }
@@ -92,9 +108,23 @@ function renderForm() {
 function renderField({ feature, meta }) {
   const min = meta.min !== undefined ? `min="${meta.min}"` : '';
   const max = meta.max !== undefined ? `max="${meta.max}"` : '';
-  const input = meta.tipo === 'numerico'
-    ? `<input id="${feature}" name="${feature}" type="number" step="1" ${min} ${max} placeholder="${meta.permite_nao_informado ? 'Não informado' : 'Informe um valor'}" />`
-    : `<input id="${feature}" name="${feature}" type="text" inputmode="numeric" placeholder="Não informado ou código SINASC" list="categorical-options" />`;
+  const options = fieldOptions[feature];
+  let input;
+  let hint = '';
+
+  if (meta.tipo === 'numerico') {
+    input = `<input id="${feature}" name="${feature}" type="number" step="1" ${min} ${max} placeholder="${meta.permite_nao_informado ? 'Não informado' : 'Informe um valor'}" />`;
+  } else if (Array.isArray(options)) {
+    input = `
+      <select id="${feature}" name="${feature}">
+        <option value="">Não informado</option>
+        ${options.map((option) => `<option value="${option.valor}"${option.descricao ? ` title="${option.descricao}"` : ''}>${option.rotulo}</option>`).join('')}
+      </select>`;
+    hint = 'Selecione uma opção. Caso não saiba, deixe como Não informado.';
+  } else {
+    input = `<input id="${feature}" name="${feature}" type="text" inputmode="numeric" placeholder="Não informado ou código SINASC" />`;
+    hint = 'Informe o código SINASC, se conhecido. Deixe vazio para enviar como null.';
+  }
 
   return `
     <article class="field">
@@ -105,7 +135,7 @@ function renderField({ feature, meta }) {
       <p class="description">${meta.descricao || 'Descrição não informada no dicionário.'}</p>
       ${meta.observacao ? `<p class="observation"><strong>Obs.:</strong> ${meta.observacao}</p>` : ''}
       ${input}
-      ${meta.tipo === 'categorico' ? '<p class="hint">Digite o código da categoria. Deixe vazio para enviar como null.</p>' : ''}
+      ${hint ? `<p class="hint">${hint}</p>` : ''}
     </article>
   `;
 }

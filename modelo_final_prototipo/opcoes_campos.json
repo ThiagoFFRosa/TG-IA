@@ -1,0 +1,92 @@
+{
+  "LOCNASC": [
+    { "valor": "1", "rotulo": "Hospital" },
+    { "valor": "2", "rotulo": "Outros estabelecimentos de saúde" },
+    { "valor": "3", "rotulo": "Domicílio" },
+    { "valor": "4", "rotulo": "Outros" },
+    { "valor": "5", "rotulo": "Aldeia indígena" }
+  ],
+  "ESTCIVMAE": [
+    { "valor": "1", "rotulo": "Solteira" },
+    { "valor": "2", "rotulo": "Casada" },
+    { "valor": "3", "rotulo": "Viúva" },
+    { "valor": "4", "rotulo": "Separada judicialmente/divorciada" },
+    { "valor": "5", "rotulo": "União estável" },
+    { "valor": "9", "rotulo": "Ignorada" }
+  ],
+  "ESCMAE": [
+    { "valor": "1", "rotulo": "Nenhuma" },
+    { "valor": "2", "rotulo": "1 a 3 anos" },
+    { "valor": "3", "rotulo": "4 a 7 anos" },
+    { "valor": "4", "rotulo": "8 a 11 anos" },
+    { "valor": "5", "rotulo": "12 anos ou mais" },
+    { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "GESTACAO": [
+    { "valor": "1", "rotulo": "Menos de 22 semanas" }, { "valor": "2", "rotulo": "22 a 27 semanas" },
+    { "valor": "3", "rotulo": "28 a 31 semanas" }, { "valor": "4", "rotulo": "32 a 36 semanas" },
+    { "valor": "5", "rotulo": "37 a 41 semanas" }, { "valor": "6", "rotulo": "42 semanas ou mais" },
+    { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "GRAVIDEZ": [
+    { "valor": "1", "rotulo": "Única" }, { "valor": "2", "rotulo": "Dupla" },
+    { "valor": "3", "rotulo": "Tripla ou mais" }, { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "PARTO": [
+    { "valor": "1", "rotulo": "Vaginal" }, { "valor": "2", "rotulo": "Cesáreo" }, { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "CONSULTAS": [
+    { "valor": "1", "rotulo": "Nenhuma" }, { "valor": "2", "rotulo": "1 a 3 consultas" },
+    { "valor": "3", "rotulo": "4 a 6 consultas" }, { "valor": "4", "rotulo": "7 ou mais consultas" },
+    { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "SEXO": [
+    { "valor": "1", "rotulo": "Masculino" }, { "valor": "2", "rotulo": "Feminino" }, { "valor": "0", "rotulo": "Ignorado" }
+  ],
+  "RACACOR": [
+    { "valor": "1", "rotulo": "Branca" }, { "valor": "2", "rotulo": "Preta" }, { "valor": "3", "rotulo": "Amarela" },
+    { "valor": "4", "rotulo": "Parda" }, { "valor": "5", "rotulo": "Indígena" }
+  ],
+  "RACACORMAE": [
+    { "valor": "1", "rotulo": "Branca" }, { "valor": "2", "rotulo": "Preta" }, { "valor": "3", "rotulo": "Amarela" },
+    { "valor": "4", "rotulo": "Parda" }, { "valor": "5", "rotulo": "Indígena" }
+  ],
+  "IDANOMAL": [
+    { "valor": "1", "rotulo": "Sim" }, { "valor": "2", "rotulo": "Não" }, { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "TPAPRESENT": [
+    { "valor": "1", "rotulo": "Cefálico" }, { "valor": "2", "rotulo": "Pélvica ou podálica" },
+    { "valor": "3", "rotulo": "Transversa" }, { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "STTRABPART": [
+    { "valor": "1", "rotulo": "Sim" }, { "valor": "2", "rotulo": "Não" },
+    { "valor": "3", "rotulo": "Não se aplica" }, { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "STCESPARTO": [
+    { "valor": "1", "rotulo": "Sim" }, { "valor": "2", "rotulo": "Não" },
+    { "valor": "3", "rotulo": "Não se aplica" }, { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "TPNASCASSI": [
+    { "valor": "1", "rotulo": "Médico" }, { "valor": "2", "rotulo": "Enfermagem ou obstetriz" },
+    { "valor": "3", "rotulo": "Parteira" }, { "valor": "4", "rotulo": "Outros" }, { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "ESCMAE2010": [
+    { "valor": "0", "rotulo": "Sem escolaridade" }, { "valor": "1", "rotulo": "Fundamental I" },
+    { "valor": "2", "rotulo": "Fundamental II" }, { "valor": "3", "rotulo": "Médio" },
+    { "valor": "4", "rotulo": "Superior incompleto" }, { "valor": "5", "rotulo": "Superior completo" },
+    { "valor": "9", "rotulo": "Ignorado" }
+  ],
+  "ESCMAEAGR1": [
+    { "valor": "00", "rotulo": "Sem escolaridade" }, { "valor": "01", "rotulo": "Fundamental I incompleto" },
+    { "valor": "02", "rotulo": "Fundamental I completo" }, { "valor": "03", "rotulo": "Fundamental II incompleto" },
+    { "valor": "04", "rotulo": "Fundamental II completo" }, { "valor": "05", "rotulo": "Ensino médio incompleto" },
+    { "valor": "06", "rotulo": "Ensino médio completo" }, { "valor": "07", "rotulo": "Superior incompleto" },
+    { "valor": "08", "rotulo": "Superior completo" }, { "valor": "09", "rotulo": "Ignorado" },
+    { "valor": "10", "rotulo": "Fundamental I incompleto ou inespecífico" },
+    { "valor": "11", "rotulo": "Fundamental II incompleto ou inespecífico" },
+    { "valor": "12", "rotulo": "Ensino médio incompleto ou inespecífico" }
+  ],
+  "PARIDADE": [
+    { "valor": "0", "rotulo": "Nulípara" }, { "valor": "1", "rotulo": "Multípara" }
+  ]
+}
